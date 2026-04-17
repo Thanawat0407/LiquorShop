@@ -54,6 +54,23 @@ def init_db():
         except:
             pass
 
+    # Sample data
+    samples = [
+        ("Jack Daniel's", 2500.00, "https://images.unsplash.com/photo-1528823872057-7c5d6c5245b3?w=400", 50, 1, 40.0, 750),
+        ("Chateau Margaux", 15000.00, "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400", 10, 2, 13.5, 750),
+        ("Hendrick's Gin", 3200.00, "https://images.unsplash.com/photo-1607622750671-6cd9a99eabd1?w=400", 30, 3, 41.4, 700),
+        ("Absolut Vodka", 1800.00, "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=400", 40, 4, 40.0, 750),
+        ("Sierra Nevada Pale Ale", 250.00, "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400", 100, 5, 5.6, 355)
+    ]
+    for s in samples:
+        try:
+            conn.execute("""
+            INSERT INTO liquors (name, price, image, stock, category_id, alcohol_content, volume)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, s)
+        except:
+            pass
+
     conn.commit()
     conn.close()
 
@@ -154,4 +171,5 @@ def delete(id):
 
 # -------------------------
 if __name__ == "__main__":
+    app.run(debug=True)main__":
     app.run(debug=True)
