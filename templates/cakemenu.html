@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+margin:0;
+font-family:serif;
+background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+color:white;
+}
+
+header{
+text-align:center;
+padding:20px;
+font-size:30px;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+}
+
+.container{
+padding:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.9);
+color:black;
+border-radius:20px;
+padding:15px;
+box-shadow:0 0 15px rgba(212,175,55,0.3);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:contain;
+transition:0.3s;
+}
+
+.card img:hover{
+transform:scale(1.05);
+}
+
+.badge{
+color:#D4AF37;
+font-weight:bold;
+}
+
+.btn{
+padding:8px 12px;
+border-radius:8px;
+text-decoration:none;
+margin-right:5px;
+}
+
+.edit{background:#D4AF37;color:black;}
+.delete{background:#8B0000;color:white;}
+.add{background:#D4AF37;color:black;padding:10px;border-radius:10px;}
+
+</style>
+</head>
+
+<body>
+
+<header>🥂 The Premium Spirit</header>
+
+<div class="container">
+<a href="/append" class="add">+ เพิ่มสินค้า</a>
+
+<div class="grid">
+{% for l in liquors %}
+<div class="card">
+<img src="{{l.image}}">
+
+<h3>{{l.name}}</h3>
+<p class="badge">#{{l.category_name}}</p>
+
+<p>💰 ราคา: {{l.price}} บาท</p>
+<p>📦 สต็อก: {{l.stock}}</p>
+<p>🍶 {{l.alcohol_content}}% alc | {{l.volume}} ml</p>
+
+<a href="/edit/{{l.id}}" class="btn edit">แก้ไข</a>
+<a href="/delete/{{l.id}}" class="btn delete">ลบ</a>
+</div>
+{% endfor %}
+</div>
+
+</div>
+
+</body>
+</html>
